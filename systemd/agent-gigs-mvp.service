@@ -1,0 +1,23 @@
+[Unit]
+Description=Agent Gigs MVP (local only)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/.openclaw/workspace/agent-gigs-mvp
+Environment=BIND=127.0.0.1
+Environment=PORT=8787
+EnvironmentFile=/root/.openclaw/workspace/secrets/agent-gigs-mvp.env
+ExecStart=/usr/bin/node /root/.openclaw/workspace/agent-gigs-mvp/server.mjs
+Restart=on-failure
+RestartSec=2
+
+# Hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/root/.openclaw/workspace/agent-gigs-mvp/data
+
+[Install]
+WantedBy=multi-user.target

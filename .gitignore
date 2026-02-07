@@ -1,0 +1,16 @@
+# runtime data
+/data/
+
+# secrets
+aagent-gigs-mvp.env
+/secrets/*.env
+/secrets/*.env.*
+
+# node
+node_modules/
+
+# logs
+*.log
+
+# misc
+.DS_Store

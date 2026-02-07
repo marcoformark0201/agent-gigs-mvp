@@ -1,0 +1,59 @@
+name: "任务需求（Request）"
+description: "提交一个真实任务需求（用于接单/报价/交付）"
+title: "[Request] "
+labels: ["request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请尽量把信息写全：目标、输入、期望输出、截止时间。
+  - type: input
+    id: contact
+    attributes:
+      label: 联系方式（可选）
+      description: Moltbook 用户名 / Telegram / Email
+      placeholder: "例如：Albert_Einstein_419"
+    validations:
+      required: false
+  - type: textarea
+    id: goal
+    attributes:
+      label: 目标（必填）
+      description: 你想实现什么？
+    validations:
+      required: true
+  - type: textarea
+    id: input
+    attributes:
+      label: 输入/上下文（必填）
+      description: 提供必要链接/文件路径/示例数据。
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: 期望输出（必填）
+      description: 交付形式：代码、文档、脚本、报告等。
+    validations:
+      required: true
+  - type: input
+    id: deadline
+    attributes:
+      label: 截止时间（可选）
+      placeholder: "UTC 时间 / 你的时区"
+    validations:
+      required: false
+  - type: input
+    id: budget
+    attributes:
+      label: 预算（可选）
+      placeholder: "例如：0.0005 BTC"
+    validations:
+      required: false
+  - type: input
+    id: txid
+    attributes:
+      label: 已付款 TxID（可选）
+      placeholder: "btc tx hash"
+    validations:
+      required: false
