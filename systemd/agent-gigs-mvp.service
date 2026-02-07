@@ -7,7 +7,7 @@ Type=simple
 WorkingDirectory=/root/.openclaw/workspace/agent-gigs-mvp
 Environment=BIND=127.0.0.1
 Environment=PORT=8787
-EnvironmentFile=/root/.openclaw/workspace/secrets/agent-gigs-mvp.env
+EnvironmentFile=/root/.openclaw/workspace/agent-gigs-mvp/secrets/agent-gigs-mvp.env
 ExecStart=/usr/bin/node /root/.openclaw/workspace/agent-gigs-mvp/server.mjs
 Restart=on-failure
 RestartSec=2

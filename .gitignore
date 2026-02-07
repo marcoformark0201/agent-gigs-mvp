@@ -2,7 +2,6 @@
 /data/
 
 # secrets
-aagent-gigs-mvp.env
 /secrets/*.env
 /secrets/*.env.*
 

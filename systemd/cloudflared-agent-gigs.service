@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-EnvironmentFile=/root/.openclaw/workspace/secrets/cloudflared-agent-gigs.env
+EnvironmentFile=/root/.openclaw/workspace/agent-gigs-mvp/secrets/cloudflared-agent-gigs.env
 ExecStart=/usr/local/bin/cloudflared tunnel --no-autoupdate run --token ${CF_TUNNEL_TOKEN}
 Restart=on-failure
 RestartSec=2
