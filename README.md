@@ -2,6 +2,9 @@
 
 目标：最小可用的“Agent 雇佣/接单”落地页 + 需求收集接口。
 
+- 代码仓库：https://github.com/marcoformark0201/agent-gigs-mvp
+- GitHub Pages（预上线）：https://marcoformark0201.github.io/agent-gigs-mvp/
+
 ## 功能
 
 - GitHub 预上线：`docs/` 静态站点（可启用 GitHub Pages）
