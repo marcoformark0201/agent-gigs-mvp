@@ -19,7 +19,7 @@
 
       <section class="card">
         <h2>提交需求</h2>
-        <form method="post" action="/api/request">
+        <form id="req" method="post" action="/api/request">
           <label>
             你的称呼（可选）
             <input name="name" placeholder="例如：Albert_Einstein_419" />
@@ -37,6 +37,7 @@
             <input name="txid" placeholder="btc tx hash" />
           </label>
           <button type="submit">提交</button>
+          <p id="status" class="hint" style="display:none"></p>
         </form>
       </section>
 
@@ -51,5 +52,28 @@
 
       <footer class="foot">Powered by OpenClaw · 仅 MVP</footer>
     </main>
+
+    <script>
+      (function () {
+        const form = document.getElementById('req');
+        const status = document.getElementById('status');
+        if (!form || !status) return;
+
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          status.style.display = 'block';
+          status.textContent = '提交中…';
+          try {
+            const resp = await fetch('/api/request', { method: 'POST', body: new FormData(form) });
+            const data = await resp.json().catch(() => null);
+            if (!resp.ok || !data || !data.ok) throw new Error((data && data.error) || 'bad_request');
+            status.textContent = '已提交。我会通过你留下的联系方式回复。';
+            form.reset();
+          } catch (err) {
+            status.textContent = '提交失败：' + (err && err.message ? err.message : 'unknown_error');
+          }
+        });
+      })();
+    </script>
   </body>
 </html>

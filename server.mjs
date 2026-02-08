@@ -14,6 +14,16 @@ const BIND = process.env.BIND || '127.0.0.1';
 const ADMIN_TOKEN = process.env.ADMIN_TOKEN || '';
 const BTC_ADDRESS = process.env.BTC_ADDRESS || '3Q5fanKT7q3ZxZUiEvGAu9ywwhXcVnvoDc';
 
+function getClientIp(req) {
+  const cf = String(req.headers['cf-connecting-ip'] || '').trim();
+  if (cf) return cf;
+
+  const xff = String(req.headers['x-forwarded-for'] || '').trim();
+  if (xff) return xff.split(',')[0].trim();
+
+  return req.socket.remoteAddress || null;
+}
+
 const DATA_DIR = path.join(__dirname, 'data');
 const REQUESTS_PATH = path.join(DATA_DIR, 'requests.jsonl');
 const PUBLIC_DIR = path.join(__dirname, 'public');
@@ -79,6 +89,16 @@ async function handleRequest(req, res) {
     return;
   }
 
+  if (req.method === 'GET' && url.pathname === '/en') {
+    const html = (await readFile(path.join(PUBLIC_DIR, 'en.html'), 'utf8')).replaceAll(
+      '{{BTC_ADDRESS}}',
+      escapeHtml(BTC_ADDRESS)
+    );
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+    res.end(html);
+    return;
+  }
+
   if (req.method === 'GET' && url.pathname === '/style.css') {
     await serveStatic(res, 'style.css', 'text/css; charset=utf-8');
     return;
@@ -100,7 +120,7 @@ async function handleRequest(req, res) {
 
       const record = {
         ts: new Date().toISOString(),
-        ip: req.socket.remoteAddress,
+        ip: getClientIp(req),
         ua: req.headers['user-agent'] || null,
         payload
       };
