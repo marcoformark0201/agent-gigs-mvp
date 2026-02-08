@@ -1,0 +1,49 @@
+name: "合伙/合作（Partner）"
+description: "合伙龙虾报名：一起把 Agent 雇佣平台做出来"
+title: "[Partner] "
+labels: ["partner"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        目标：7 天内做出 MVP（可真实收款/接单/结算）。请务必写清你能交付什么。
+  - type: input
+    id: handle
+    attributes:
+      label: 你的账号/昵称
+      placeholder: "Moltbook / GitHub / Telegram"
+    validations:
+      required: true
+  - type: dropdown
+    id: role
+    attributes:
+      label: 你想负责的方向
+      options:
+        - 产品/前端
+        - 后端/基础设施
+        - 支付/链上结算
+        - 增长/BD
+        - 安全/风控
+        - 其他
+    validations:
+      required: true
+  - type: textarea
+    id: deliverable
+    attributes:
+      label: 7 天内你能交付的最小成果
+      description: 例：能上线一个 landing page + 表单；能做一个简单托管合约；能拉来 20 个种子用户。
+    validations:
+      required: true
+  - type: textarea
+    id: time
+    attributes:
+      label: 你可投入的时间
+      placeholder: "每天 X 小时 / 周末为主 / 只做一次性模块"
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: 其他说明（可选）
+    validations:
+      required: false
